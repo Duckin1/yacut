@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="382cee47-926d-4422-8fec-7fb1d0387567" name="Changes" comment="">
+    <list default="true" id="382cee47-926d-4422-8fec-7fb1d0387567" name="Changes" comment="add file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yacut/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/yacut/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yacut/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/yacut/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yacut/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/yacut/views.py" afterDir="false" />
@@ -62,11 +61,24 @@
       <workItem from="1695461248676" duration="3785000" />
       <workItem from="1695637713457" duration="1418000" />
       <workItem from="1695639263316" duration="243000" />
-      <workItem from="1695639539528" duration="720000" />
+      <workItem from="1695639539528" duration="2739000" />
     </task>
+    <task id="LOCAL-00001" summary="add file">
+      <option name="closed" value="true" />
+      <created>1695640419266</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1695640419266</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add file" />
+    <option name="LAST_COMMIT_MESSAGE" value="add file" />
   </component>
 </project>
