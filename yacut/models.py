@@ -2,9 +2,17 @@ from datetime import datetime
 
 from yacut import db
 
+from . import BASE_URL
+
 
 class URLMap(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    original = db.Column()
-    short = db.Column()
-    timestamp = db.Column(db.String(256))
+    original = db.Column(db.String(256))
+    short = db.Column(db.String(16), unique=True)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    def to_dict(self):
+        return dict(
+            url=self.original,
+            short_link=BASE_URL + self.short,
+        )
