@@ -1,22 +1,16 @@
 import csv
 from datetime import datetime
-from random import randrange
+from random import choice
+from string import ascii_letters, digits
 
 import click
 from flask import Flask, abort, flash, redirect, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField, URLField
-from wtforms.validators import URL, DataRequired, Length, Optional
+from wtforms import StringField, SubmitField, URLField
+from wtforms.validators import DataRequired, Length, Optional
 
-app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'SECRET KEY'
-
-db = SQLAlchemy(app)
-
+from yacut import db
 
 class URLMap(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -36,19 +30,51 @@ class URLMap(db.Model):
 
 
 class URLForm(FlaskForm):
-    original_link = StringField('Original Link', validators=[URL()])
-    custom_id = StringField('Custom Short ID', validators=[Length(max=16)])
-    submit = SubmitField('Shorten URL')
+    original_link = URLField(
+        'Длинная ссылка',
+        validators=[DataRequired(message='Обязательное поле'), ]
+    )
+    custom_id = StringField(
+        'Ваш вариант короткой ссылки',
+        validators=[Length(max=16), Optional()]
+    )
+    submit = SubmitField('Создать')
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index_view():
-    quantity = yacut.query.count()
-    if not quantity:
-        abort(404)
-    offset_value = randrange(quantity)
-    opinion = yacut.query.offset(offset_value).first()
-    return render_template('index.html', opinion=opinion)
+    form = URLForm()
+    if form.validate_on_submit():
+        short = form.custom_id.data
+        if not short:
+            short = get_unique_short_id()
+        elif URLMap.query.filter_by(short=short).first():
+            flash(f'Имя {short} уже занято!')
+            return render_template('index.html', form=form)
+        url_map = URLMap(
+            original=form.original_link.data,
+            short=short,
+        )
+        db.session.add(url_map)
+        db.session.commit()
+        return render_template('index.html', form=form, short=short)
+    return render_template('index.html', form=form)
+
+
+@app.route('/<string:custom_id>')
+def redirect_view(custom_id):
+    url_map = URLMap.query.filter_by(short=custom_id).first_or_404()
+    return redirect(url_map.original)
+
+
+def get_unique_short_id():
+    letters_digits = ascii_letters + digits
+    random_string = ''.join(
+        choice(letters_digits) for _ in range(6)
+    )
+    if URLMap.query.filter_by(short=random_string).first():
+        random_string = get_unique_short_id()
+    return random_string
 
 
 @app.errorhandler(404)
