@@ -10,7 +10,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, URLField
 from wtforms.validators import DataRequired, Length, Optional
 
-from yacut import db
+from . import BASE_URL, app, db
+
 
 class URLMap(db.Model):
     id = db.Column(db.Integer, primary_key=True)

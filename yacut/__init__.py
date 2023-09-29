@@ -5,5 +5,6 @@ from settings import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
+BASE_URL = 'http://localhost/'
 
 from . import api_views, error_handlers, views
