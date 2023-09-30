@@ -1,45 +1,10 @@
-import csv
-from datetime import datetime
-from random import choice
-from string import ascii_letters, digits
+from flask import flash, redirect, render_template
+from datetime import timedelta, datetime
 
-import click
-from flask import Flask, abort, flash, redirect, render_template, url_for
-from flask_sqlalchemy import SQLAlchemy
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, URLField
-from wtforms.validators import DataRequired, Length, Optional
-
-from . import BASE_URL, app, db
-
-
-class URLMap(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    original = db.Column(db.String(256))
-    short = db.Column(db.String(16), unique=True)
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-
-    def to_dict(self):
-        return dict(
-            url=self.original,
-            short_link=BASE_URL + self.short,
-        )
-
-    def from_dict(self, data):
-        setattr(self, 'original', data['url'])
-        setattr(self, 'short', data['custom_id'])
-
-
-class URLForm(FlaskForm):
-    original_link = URLField(
-        'Длинная ссылка',
-        validators=[DataRequired(message='Обязательное поле'), ]
-    )
-    custom_id = StringField(
-        'Ваш вариант короткой ссылки',
-        validators=[Length(max=16), Optional()]
-    )
-    submit = SubmitField('Создать')
+from . import app, db
+from .forms import URLForm
+from .models import URLMap
+from .utils import get_unique_short_id
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -68,26 +33,10 @@ def redirect_view(custom_id):
     return redirect(url_map.original)
 
 
-def get_unique_short_id():
-    letters_digits = ascii_letters + digits
-    random_string = ''.join(
-        choice(letters_digits) for _ in range(6)
-    )
-    if URLMap.query.filter_by(short=random_string).first():
-        random_string = get_unique_short_id()
-    return random_string
-
-
-@app.errorhandler(404)
-def page_not_found(error):
-    return render_template('404.html'), 404
-
-
-@app.errorhandler(500)
-def internal_error(error):
-    db.session.rollback()
-    return render_template('500.html'), 500
-
-
-if __name__ == '__main__':
-    app.run()
+def clean_old_records():
+    """
+        Удаляет записи старше 30 дней из таблицы в базе данных.
+    """
+    cutoff_date = datetime.utcnow() - timedelta(days=30)
+    URLMap.query.filter(URLMap.timestamp < cutoff_date).delete()
+    db.session.commit()
