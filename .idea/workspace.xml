@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="382cee47-926d-4422-8fec-7fb1d0387567" name="Changes" comment="add file">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/50f5c1bf-84eb-4d57-9654-7784bdef448a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/50f5c1bf-84eb-4d57-9654-7784bdef448a.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_09_2023_18_06__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_09_2023_18_06__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacut/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/yacut/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacut/api_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/yacut/api_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacut/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/yacut/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacut/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/yacut/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacut/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/yacut/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="382cee47-926d-4422-8fec-7fb1d0387567" name="Changes" comment="review" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +65,7 @@
       <workItem from="1695639263316" duration="243000" />
       <workItem from="1695639539528" duration="2739000" />
       <workItem from="1695832305954" duration="1825000" />
-      <workItem from="1696247939704" duration="2673000" />
+      <workItem from="1696247939704" duration="3431000" />
     </task>
     <task id="LOCAL-00001" summary="add file">
       <option name="closed" value="true" />
@@ -93,7 +82,23 @@
       <option name="project" value="LOCAL" />
       <updated>1695677047424</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="review">
+      <option name="closed" value="true" />
+      <created>1696250756445</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696250756445</updated>
+    </task>
+    <task id="LOCAL-00004" summary="review">
+      <option name="closed" value="true" />
+      <created>1696250801529</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696250801529</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,7 +107,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add file" />
     <MESSAGE value="add files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add files" />
+    <MESSAGE value="review" />
+    <option name="LAST_COMMIT_MESSAGE" value="review" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
