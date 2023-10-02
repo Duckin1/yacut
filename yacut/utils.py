@@ -3,6 +3,7 @@ from string import ascii_letters, digits
 from datetime import timedelta, datetime
 
 from .models import URLMap
+from . import db
 
 
 def get_unique_short_id():
