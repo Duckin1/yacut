@@ -1,5 +1,4 @@
 from flask import flash, redirect, render_template
-from datetime import timedelta, datetime
 
 from . import app, db
 from .forms import URLForm
@@ -31,12 +30,3 @@ def index_view():
 def redirect_view(custom_id):
     url_map = URLMap.query.filter_by(short=custom_id).first_or_404()
     return redirect(url_map.original)
-
-
-def clean_old_records():
-    """
-        Удаляет записи старше 30 дней из таблицы в базе данных.
-    """
-    cutoff_date = datetime.utcnow() - timedelta(days=30)
-    URLMap.query.filter(URLMap.timestamp < cutoff_date).delete()
-    db.session.commit()

@@ -7,12 +7,11 @@ from . import app, db
 from .error_handlers import InvalidAPIUsage
 from .models import URLMap
 from .utils import get_unique_short_id
+from .constants import PATTERN
 
 
 @app.route('/api/id/', methods=['POST'])
 def create_url():
-    PATTERN = r'^[a-zA-Z0-9]{1,16}$'
-
     data = request.get_json()
     if not data:
         raise InvalidAPIUsage('Отсутствует тело запроса')
@@ -37,6 +36,6 @@ def get_url(short_id):
     url_map = URLMap.query.filter_by(short=short_id).first()
     if not url_map:
         raise InvalidAPIUsage(
-            'Указанный id не найден', HTTPStatus.NOT_FOUND.value
+            f'Указанный {short_id} не найден', HTTPStatus.NOT_FOUND.value
         )
     return jsonify(url=url_map.original), HTTPStatus.OK.value
