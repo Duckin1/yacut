@@ -36,6 +36,6 @@ def get_url(short_id):
     url_map = URLMap.query.filter_by(short=short_id).first()
     if not url_map:
         raise InvalidAPIUsage(
-            f'Указанный id не найден', HTTPStatus.NOT_FOUND.value
+            'Указанный id не найден', HTTPStatus.NOT_FOUND.value
         )
     return jsonify(url=url_map.original), HTTPStatus.OK.value
